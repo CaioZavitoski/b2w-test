@@ -1,0 +1,111 @@
+<div class="navbar">
+  <div class="navbar-title">
+    <span>users_like.me</span>
+  </div>
+  <div *ngIf="hasFollowing" class="navbar-title">
+    <span>Following {{ followingNumber }} users</span>
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </div>
+  <div *ngIf="!hasFollowing" class="navbar-title"></div>
+</div>
+<div class="main-title">
+  <h1>Find new users like you</h1>
+</div>
+<div class="user-profile">
+  <div class="user-modal">
+    <div
+      class="user-background"
+      [style.background-image]="'url(' + userBackgroundImage + ')'"
+    ></div>
+    <div class="user-circle">
+      <img [src]="userBackgroundImage" alt="" />
+    </div>
+    <div class="user-buttons">
+      <div class="follow-button">
+        <button *ngIf="!isFollowing" (click)="onFollowUser()" type="button">
+          Follow
+        </button>
+        <button class="disabled" *ngIf="isFollowing" type="button">
+          Following
+        </button>
+      </div>
+      <div class="try-button">
+        <button class="try-buttons" (click)="onTryNewUser()" type="button">
+          Try the next one
+        </button>
+      </div>
+    </div>
+    <div class="user-data">
+      <div class="user-name">
+        <span>{{ userFullName }}</span>
+      </div>
+      <div class="user-city">
+        <span>{{ userCity }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="user-info">
+  <div class="cards">
+    <div class="card-info">
+      <div class="card-description">
+        <h2>Personal info</h2>
+      </div>
+      <div class="card-description">
+        <span>Born at: {{ userBornAt }}</span>
+      </div>
+      <div class="card-description">
+        <span>Age: {{ userAge }}</span>
+      </div>
+      <hr />
+      <div class="card-see_more">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+        <span>See more</span>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-description">
+        <h2>Contact info</h2>
+      </div>
+      <div class="card-description">
+        <span>Email: {{ userEmail }}</span>
+      </div>
+      <div class="card-description">
+        <span mask="(000) 000-0000">Phone: {{ userPhone }} </span>
+      </div>
+      <hr />
+      <div class="card-see_more">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+        <span>See more</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="user-suggestion-title">
+  <h1>Suggestion 4you</h1>
+</div>
+<div class="user-suggestion">
+  <div class="profile-cards" *ngFor="let item of oldUserData; let idx = index">
+    <div class="profile-items">
+      <div class="profile-name">
+        <img [src]="item.results[0].picture.large" alt="" />
+        <span>{{
+          item.results[0].name.first + " " + item.results[0].name.last
+        }}</span>
+        <span
+          >{{
+            item.results[0].location.city +
+              ", " +
+              item.results[0].location.country
+          }}
+        </span>
+        <span
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
+          blanditiis rerum est, natus atque quia alias excepturi earum
+          necessitatibus accusantium!
+        </span>
+        <button type="button">Follow</button>
+      </div>
+    </div>
+  </div>
+</div>
